@@ -1,17 +1,17 @@
 "use client";
-import Image from "next/image";
-import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import Avatar from "react-avatar";
-import { useBoardStore } from "@/store/BoardStore";
-import { useEffect, useState } from "react";
 import { fetchSuggestions } from "@/lib/fetchSuggestion";
+import { useBoardStore } from "@/store/BoardStore";
+import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Avatar from "react-avatar";
 const Header = () => {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
     state.board,
     state.searchString,
     state.setSearchString,
   ]);
-  const [loading, setLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [suggestion, setSuggestion] = useState<String>("");
 
   useEffect(() => {
