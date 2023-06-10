@@ -3,19 +3,37 @@ import { getTodosGroupedByColumn } from "@/lib/getTodosGroupedByColumn";
 import { create } from "zustand";
 interface BoardState {
   board: Board;
-  getBoard: () => void;
   setBoardState: (board: Board) => void;
+
   updateTodoInDB: (todo: Todo, columnId: TypedColumn) => void;
+
   searchString: string;
   setSearchString: (searchString: string) => void;
+
+  getBoard: () => void;
   deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void;
+
+  newTaskInput: string;
+  setNewTaskInput: (newTaskInput: string) => void;
+
+  newTaskType: TypedColumn;
+  setNewTaskType: (newTaskType: TypedColumn) => void;
+
+  image: File | null;
+  setImage: (image: File | null) => void;
 }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
   board: {
     columns: new Map<TypedColumn, Column>(),
   },
+  image: null,
+  setImage: (image: File | null) => set({ image }),
   searchString: "",
+  newTaskInput: "",
+  newTaskType: "todo",
+  setNewTaskType: (newTaskType: TypedColumn) => set({ newTaskType }),
+  setNewTaskInput: (newTaskInput: string) => set({ newTaskInput }),
   setSearchString: (searchString: string) => set({ searchString }),
   getBoard: async () => {
     const board = await getTodosGroupedByColumn();
