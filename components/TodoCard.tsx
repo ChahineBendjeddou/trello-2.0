@@ -43,13 +43,13 @@ export default function TodoCard({
   }, [todo]);
   return (
     <div
-      className="space-y-2 bg-white rounded-md drop-shadow-md"
+      className="w-full space-y-2 bg-white rounded-md drop-shadow-md"
       {...dragHandleProps}
       {...draggableProps}
       ref={innerRef}
     >
-      <div className="flex items-center justify-between p-5">
-        <p>{todo.title}</p>
+      <div className="flex items-center justify-between p-5 ">
+        <p className="overflow-x-scroll no-scrollbar">{todo.title}</p>
         <button
           onClick={() => deleteTask(index, todo, id)}
           className="text-red-500 hover:text-red-600"
